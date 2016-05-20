@@ -7,8 +7,19 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var mysql = require('mysql');
+var connection = require("express-myconnection");
 
 var app = express();
+
+// Create Sql Connection
+app.use(connection(mysql, {
+host: "localhost",
+user: "root",
+password: "root",
+database: "test"
+
+},'request'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
